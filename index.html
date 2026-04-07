@@ -1,80 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>AML Monitor</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>AML Monitor</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<div class="layout">
+  <div class="layout">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <h2>AML System</h2>
-    <ul>
-      <li onclick="mostrarSeccion('clientes')">Clientes</li>
-      <li onclick="mostrarSeccion('transacciones')">Transacciones</li>
-      <li onclick="mostrarSeccion('alertas')">Alertas</li>
-      <li onclick="mostrarSeccion('dashboard')">Dashboard</li>
-    </ul>
-  </aside>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2>AML System</h2>
+      <ul>
+        <li onclick="mostrarSeccion('guia')">Guía</li>
+        <li onclick="mostrarSeccion('clientes')">Clientes</li>
+        <li onclick="mostrarSeccion('transacciones')">Transacciones</li>
+        <li onclick="mostrarSeccion('alertas')">
+          Alertas <span id="badgeAlertas" class="badge">0</span>
+        </li>
+        <li onclick="mostrarSeccion('dashboard')">Dashboard</li>
+      </ul>
+    </aside>
 
-  <!-- CONTENIDO -->
-  <main class="main">
+    <!-- CONTENIDO -->
+    <main class="main">
+      <section id="guia" class="card">
+        <h3>📘 Guía de uso</h3>
+        <ul>
+          <li>1. Registra un cliente en la sección "Clientes"</li>
+          <li>2. Ve a "Transacciones" y registra movimientos</li>
+          <li>3. El sistema detectará operaciones sospechosas automáticamente</li>
+          <li>4. Revisa las alertas en la sección "Alertas"</li>
+          <li>5. Consulta el resumen en el Dashboard</li>
+        </ul>
+      </section>
+      <!-- CLIENTES -->
+      <section id="clientes" class="card">
+        <h3>👤 Clientes</h3>
+        <input id="nombre" placeholder="Nombre">
+        <input id="ingreso" type="number" placeholder="Ingreso mensual">
+        <button onclick="agregarCliente()">Agregar</button>
+      </section>
 
-    <!-- CLIENTES -->
-    <section id="clientes" class="card">
-      <h3>👤 Clientes</h3>
-      <input id="nombre" placeholder="Nombre">
-      <input id="ingreso" type="number" placeholder="Ingreso mensual">
-      <button onclick="agregarCliente()">Agregar</button>
-    </section>
-
-    <!-- TRANSACCIONES -->
-    <section id="transacciones" class="card hidden">
-      <h3>💸 Transacciones</h3>
-      <select id="clienteSelect"></select>
-      <input id="monto" type="number" placeholder="Monto">
-      <select id="tipo">
-        <option>Depósito</option>
-        <option>Retiro</option>
-        <option>Transferencia</option>
-      </select>
-      <button onclick="agregarTransaccion()">Registrar</button>
-    </section>
-
-    <!-- ALERTAS -->
-    <section id="alertas" class="card hidden">
-      <h3>🚨 Alertas</h3>
-      <ul id="listaAlertas"></ul>
-    </section>
-
-    <!-- DASHBOARD -->
-    <section id="dashboard" class="card hidden">
-      <h3>📊 Dashboard</h3>
-      <div class="grid">
-        <div class="box">
-          <p>Transacciones</p>
-          <h2 id="totalT">0</h2>
+      <!-- TRANSACCIONES -->
+      <section id="transacciones" class="card hidden">
+        <h3>💸 Transacciones</h3>
+        <select id="clienteSelect"></select>
+        <input id="monto" type="number" placeholder="Monto">
+        <select id="tipo">
+          <option>Depósito</option>
+          <option>Retiro</option>
+          <option>Transferencia</option>
+        </select>
+        <button onclick="agregarTransaccion()">Registrar</button>
+        <!-- leyenda -->
+        <h3>Nivel de riesgo</h3>
+        <div class="leyenda">
+          <span class="bajo">Bajo</span>
+          <span class="medio">Medio</span>
+          <span class="alto">Alto</span>
         </div>
-        <div class="box">
-          <p>Alertas</p>
-          <h2 id="totalA">0</h2>
+        <h4>Historial</h4>
+        <!-- tabla -->
+        <table id="tablaTransacciones">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Monto</th>
+              <th>Tipo</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="paginacionTransacciones"></div>
+      </section>
+
+      <!-- ALERTAS -->
+      <section id="alertas" class="card hidden">
+        <h3>🚨 Alertas</h3>
+        <button onclick="marcarComoVisto()">Marcar todas como visto</button>
+        <ul id="listaAlertas"></ul>
+        <div id="paginacionAlertas"></div>
+      </section>
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="card hidden">
+        <h3>📊 Dashboard</h3>
+        <div class="grid">
+          <div class="box">
+            <p>Transacciones</p>
+            <h2 id="totalT">0</h2>
+          </div>
+          <div class="box">
+            <p>Alertas</p>
+            <h2 id="totalA">0</h2>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
+    </main>
 
-</div>
+  </div>
 
-<script src="js/storage.js"></script>
-<script src="js/clientes.js"></script>
-<script src="js/alertas.js"></script>
-<script src="js/transacciones.js"></script>
-<script src="js/app.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/clientes.js"></script>
+  <script src="js/alertas.js"></script>
+  <script src="js/transacciones.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
+
 </html>
