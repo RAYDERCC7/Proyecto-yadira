@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>AML Monitor</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>AML System</h2>
+    <ul>
+      <li onclick="mostrarSeccion('clientes')">Clientes</li>
+      <li onclick="mostrarSeccion('transacciones')">Transacciones</li>
+      <li onclick="mostrarSeccion('alertas')">Alertas</li>
+      <li onclick="mostrarSeccion('dashboard')">Dashboard</li>
+    </ul>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="main">
+
+    <!-- CLIENTES -->
+    <section id="clientes" class="card">
+      <h3>👤 Clientes</h3>
+      <input id="nombre" placeholder="Nombre">
+      <input id="ingreso" type="number" placeholder="Ingreso mensual">
+      <button onclick="agregarCliente()">Agregar</button>
+    </section>
+
+    <!-- TRANSACCIONES -->
+    <section id="transacciones" class="card hidden">
+      <h3>💸 Transacciones</h3>
+      <select id="clienteSelect"></select>
+      <input id="monto" type="number" placeholder="Monto">
+      <select id="tipo">
+        <option>Depósito</option>
+        <option>Retiro</option>
+        <option>Transferencia</option>
+      </select>
+      <button onclick="agregarTransaccion()">Registrar</button>
+    </section>
+
+    <!-- ALERTAS -->
+    <section id="alertas" class="card hidden">
+      <h3>🚨 Alertas</h3>
+      <ul id="listaAlertas"></ul>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="card hidden">
+      <h3>📊 Dashboard</h3>
+      <div class="grid">
+        <div class="box">
+          <p>Transacciones</p>
+          <h2 id="totalT">0</h2>
+        </div>
+        <div class="box">
+          <p>Alertas</p>
+          <h2 id="totalA">0</h2>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/clientes.js"></script>
+<script src="js/alertas.js"></script>
+<script src="js/transacciones.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
