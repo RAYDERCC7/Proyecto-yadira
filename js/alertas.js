@@ -35,7 +35,7 @@ function mostrarAlertas() {
       ${!a.visto ? "<strong>(Nuevo)</strong>" : ""}
     `;
 
-    li.className = "alerta";
+    li.className = a.tipo === "AVISO" ? "alerta aviso" : "alerta";
     ul.appendChild(li);
   });
 

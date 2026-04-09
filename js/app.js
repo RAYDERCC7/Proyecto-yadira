@@ -12,17 +12,20 @@ window.onload = () => {
   actualizarBadge();
   mostrarSeccion("guia"); // 👈 esto es clave
 };
-function mostrarSeccion(id) {
+function mostrarSeccion(id, event) {
   document.querySelectorAll("main section").forEach(sec => {
     sec.classList.add("hidden");
   });
 
   document.getElementById(id).classList.remove("hidden");
 
-  // marcar activo en menú
+  // limpiar activos
   document.querySelectorAll(".sidebar li").forEach(li => {
     li.classList.remove("active");
   });
 
-  event.target.classList.add("active");
+  // marcar activo
+  if (event) {
+    event.target.classList.add("active");
+  }
 }

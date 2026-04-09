@@ -31,24 +31,39 @@ function agregarTransaccion() {
 // 🧠 MOTOR AML
 function analizarTransaccion(trans) {
 
-  if (trans.monto > 10000) {
-    generarAlerta("Monto alto detectado", "ALTO");
-  }
+  // 🏠 Regla inmobiliaria
+  if (trans.monto >= 941412.75) {
+    generarAlerta(
+      "Aviso: operación inmobiliaria supera $941,412.75",
+      "AVISO"
+    );
+    Swal.fire({
+    title: "⚠️ Aviso Importante",
+    text: "La operación supera el umbral de $941,412.75",
+    icon: "warning",
+    confirmButtonText: "Entendido",
+    confirmButtonColor: "#3b82f6"
+  });
+}
+  
 
+  // 💸 Regla de estructuración
   let pequeños = transacciones.filter(t =>
     t.cliente_id == trans.cliente_id &&
-    t.monto < 1000
+    t.monto < 50000
   );
 
-  if (pequeños.length >= 3) {
-    generarAlerta("Posible estructuración", "SOSPECHOSO");
+  if (trans.monto < 50000 && pequeños.length === 3) {
+    generarAlerta(
+      "Posible estructuración de pagos en montos pequeños",
+      "SOSPECHOSO"
+    );
   }
 }
-
 // 🎨 CLASE DE RIESGO
 function obtenerClaseRiesgo(monto) {
-  if (monto > 10000) return "alto";
-  if (monto > 5000) return "medio";
+  if (monto >= 941412.75) return "alto";
+  if (monto >= 300000) return "medio";
   return "bajo";
 }
 

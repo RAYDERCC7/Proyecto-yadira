@@ -145,3 +145,7 @@ th {
 #paginacionAlertas {
   margin-top: 10px;
 }
+.aviso {
+  background: #e0f2fe; /* azul claro */
+  border-left: 5px solid #0284c7;
+}

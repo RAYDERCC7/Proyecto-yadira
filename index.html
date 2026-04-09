@@ -12,18 +12,18 @@
   <div class="layout">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h2>AML System</h2>
-      <ul>
-        <li onclick="mostrarSeccion('guia')">Guía</li>
-        <li onclick="mostrarSeccion('clientes')">Clientes</li>
-        <li onclick="mostrarSeccion('transacciones')">Transacciones</li>
-        <li onclick="mostrarSeccion('alertas')">
-          Alertas <span id="badgeAlertas" class="badge">0</span>
-        </li>
-        <li onclick="mostrarSeccion('dashboard')">Dashboard</li>
-      </ul>
-    </aside>
+  <aside class="sidebar">
+    <h2>AML System</h2>
+    <ul>
+      <li onclick="mostrarSeccion('guia', event)">Guía</li>
+      <li onclick="mostrarSeccion('clientes', event)">Clientes</li>
+      <li onclick="mostrarSeccion('transacciones', event)">Transacciones</li>
+      <li onclick="mostrarSeccion('alertas', event)">
+        Alertas <span id="badgeAlertas" class="badge">0</span>
+      </li>
+      <li onclick="mostrarSeccion('dashboard', event)">Dashboard</li>
+    </ul>
+  </aside>
 
     <!-- CONTENIDO -->
     <main class="main">
@@ -111,6 +111,7 @@
   <script src="js/alertas.js"></script>
   <script src="js/transacciones.js"></script>
   <script src="js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
